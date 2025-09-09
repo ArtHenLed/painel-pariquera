@@ -13,9 +13,9 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            /* ALTERAÇÃO 1: Fundo com imagem e camada escura de 50% */
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
-            background-size: cover;
+            /* A LINHA ABAIXO É A CORREÇÃO */
+            background-size: 576px 384px; /* Força o tamanho exato do painel */
             background-position: center;
             color: #fff;
             font-family: 'Roboto', sans-serif;
@@ -26,17 +26,16 @@
             overflow: hidden;
         }
 
-        /* ALTERAÇÃO 2: Adicionando o container do logo */
         .logo-container img {
             max-height: 70px;
-            filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.9)); /* Sombra para destacar da foto */
+            filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.9));
         }
         
         .clima-container {
             display: flex;
             align-items: center;
             gap: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* Sombra para destacar o texto do clima */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
         .temperatura {
             font-size: 80px;
@@ -48,7 +47,7 @@
         }
         .relogio-container {
             text-align: center;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Sombra para destacar o relógio */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
         #relogio {
             font-size: 120px;

@@ -67,14 +67,22 @@
     <script>
         function atualizarRelogio() {
             const agora = new Date();
-
-            // Formata a hora
+            
+            // Pega a hora e o minuto
             const hora = String(agora.getHours()).padStart(2, '0');
             const minuto = String(agora.getMinutes()).padStart(2, '0');
-            const segundo = String(agora.getSeconds()).padStart(2, '0');
-            document.getElementById('relogio').textContent = `${hora}:${minuto}:${segundo}`;
+            
+            // Pega o segundo atual para usar na lógica de piscar
+            const segundo = agora.getSeconds();
 
-            // Formata a data
+            // Lógica para fazer os dois pontos piscarem:
+            // Se o segundo for um número par, mostra ':', senão, mostra um espaço.
+            const separador = segundo % 2 === 0 ? ':' : ' ';
+            
+            // Monta o texto final do relógio
+            document.getElementById('relogio').textContent = `${hora}${separador}${minuto}`;
+
+            // Formata a data (esta parte continua a mesma)
             const dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
             const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
             const diaSemana = dias[agora.getDay()];
@@ -82,6 +90,14 @@
             const mes = meses[agora.getMonth()];
             const ano = agora.getFullYear();
             document.getElementById('data').textContent = `${diaSemana}, ${dia} de ${mes} de ${ano}`;
+        }
+
+        // Mantemos a atualização a cada segundo para que o efeito de piscar funcione
+        setInterval(atualizarRelogio, 1000);
+        
+        // Chama a função uma vez ao carregar a página para não haver atraso
+        atualizarRelogio();
+    </script>
         }
 
         // Atualiza o relógio a cada segundo

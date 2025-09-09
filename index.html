@@ -13,7 +13,10 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            background-color: #000;
+            /* ALTERAÇÃO 1: Fundo com imagem e camada escura de 50% */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
+            background-size: cover;
+            background-position: center;
             color: #fff;
             font-family: 'Roboto', sans-serif;
             display: flex;
@@ -22,10 +25,18 @@
             align-items: center;
             overflow: hidden;
         }
+
+        /* ALTERAÇÃO 2: Adicionando o container do logo */
+        .logo-container img {
+            max-height: 70px;
+            filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.9)); /* Sombra para destacar da foto */
+        }
+        
         .clima-container {
             display: flex;
             align-items: center;
             gap: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* Sombra para destacar o texto do clima */
         }
         .temperatura {
             font-size: 80px;
@@ -37,6 +48,7 @@
         }
         .relogio-container {
             text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Sombra para destacar o relógio */
         }
         #relogio {
             font-size: 120px;
@@ -50,6 +62,10 @@
     </style>
 </head>
 <body>
+
+    <div class="logo-container">
+        <img src="marcadagua.jpg" alt="Logo">
+    </div>
 
     <div class="clima-container">
         <img id="icone-tempo" src="https://openweathermap.org/img/wn/02n@2x.png" alt="Condição do Tempo" width="100">
@@ -68,21 +84,14 @@
         function atualizarRelogio() {
             const agora = new Date();
             
-            // Pega a hora e o minuto
             const hora = String(agora.getHours()).padStart(2, '0');
             const minuto = String(agora.getMinutes()).padStart(2, '0');
-            
-            // Pega o segundo atual para usar na lógica de piscar
             const segundo = agora.getSeconds();
 
-            // Lógica para fazer os dois pontos piscarem:
-            // Se o segundo for um número par, mostra ':', senão, mostra um espaço.
             const separador = segundo % 2 === 0 ? ':' : ' ';
             
-            // Monta o texto final do relógio
             document.getElementById('relogio').textContent = `${hora}${separador}${minuto}`;
 
-            // Formata a data (esta parte continua a mesma)
             const dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
             const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
             const diaSemana = dias[agora.getDay()];
@@ -92,13 +101,9 @@
             document.getElementById('data').textContent = `${diaSemana}, ${dia} de ${mes} de ${ano}`;
         }
 
-               atualizarRelogio();
-    </script>
-        }
-
         // Atualiza o relógio a cada segundo
         setInterval(atualizarRelogio, 1000);
-        // Chama a função uma vez ao carregar a página para não haver atraso
+        // Chama a função uma vez ao carregar a página
         atualizarRelogio();
     </script>
 </body>

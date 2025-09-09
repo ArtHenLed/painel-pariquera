@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=576, height=384">
+    <title>Painel Informativo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        body {
+            width: 576px;
+            height: 384px;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+        .clima-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .temperatura {
+            font-size: 80px;
+            font-weight: 700;
+        }
+        .condicao {
+            font-size: 24px;
+            text-transform: capitalize;
+        }
+        .relogio-container {
+            text-align: center;
+        }
+        #relogio {
+            font-size: 120px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        #data {
+            font-size: 28px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clima-container">
+        <img id="icone-tempo" src="https://openweathermap.org/img/wn/02n@2x.png" alt="Condição do Tempo" width="100">
+        <div>
+            <div class="temperatura">23°C</div>
+            <div class="condicao">algumas nuvens</div>
+        </div>
+    </div>
+
+    <div class="relogio-container">
+        <div id="relogio">--:--:--</div>
+        <div id="data">------, -- de ------ de ----</div>
+    </div>
+
+    <script>
+        function atualizarRelogio() {
+            const agora = new Date();
+
+            // Formata a hora
+            const hora = String(agora.getHours()).padStart(2, '0');
+            const minuto = String(agora.getMinutes()).padStart(2, '0');
+            const segundo = String(agora.getSeconds()).padStart(2, '0');
+            document.getElementById('relogio').textContent = `${hora}:${minuto}:${segundo}`;
+
+            // Formata a data
+            const dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            const diaSemana = dias[agora.getDay()];
+            const dia = agora.getDate();
+            const mes = meses[agora.getMonth()];
+            const ano = agora.getFullYear();
+            document.getElementById('data').textContent = `${diaSemana}, ${dia} de ${mes} de ${ano}`;
+        }
+
+        // Atualiza o relógio a cada segundo
+        setInterval(atualizarRelogio, 1000);
+        // Chama a função uma vez ao carregar a página para não haver atraso
+        atualizarRelogio();
+    </script>
+</body>
+</html>

@@ -13,10 +13,15 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
-            /* A LINHA ABAIXO É A CORREÇÃO */
-            background-size: 576px 384px; /* Força o tamanho exato do painel */
-            background-position: center;
+            
+            /* ===== INÍCIO DA CORREÇÃO DEFINITIVA DO FUNDO ===== */
+            background-color: #000; /* Cor de fundo caso a imagem falhe */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
+            background-repeat: no-repeat; /* Impede a imagem de se repetir */
+            background-position: center;  /* Centraliza a imagem */
+            background-size: 576px 384px; /* Força o tamanho exato da imagem */
+            /* ===== FIM DA CORREÇÃO DEFINITIVA DO FUNDO ===== */
+
             color: #fff;
             font-family: 'Roboto', sans-serif;
             display: flex;
@@ -100,9 +105,7 @@
             document.getElementById('data').textContent = `${diaSemana}, ${dia} de ${mes} de ${ano}`;
         }
 
-        // Atualiza o relógio a cada segundo
         setInterval(atualizarRelogio, 1000);
-        // Chama a função uma vez ao carregar a página
         atualizarRelogio();
     </script>
 </body>

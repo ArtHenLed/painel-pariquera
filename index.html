@@ -2,31 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=576, height=384">
     <title>Painel Informativo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
-        /* Adicionamos um estilo para o HTML para garantir a base da centralização */
-        html {
-            width: 100%;
-            height: 100%;
-            background-color: #000; /* Cor para as bordas, caso a tela seja maior */
+        /* ===== INÍCIO DA CORREÇÃO DE POSICIONAMENTO ===== */
+        /* Este reset garante que não haja margens ou espaços inesperados */
+        html, body {
+            margin: 0;
+            padding: 0;
         }
+        /* ===== FIM DA CORREÇÃO DE POSICIONAMENTO ===== */
 
         body {
             width: 576px;
             height: 384px;
             overflow: hidden;
             
-            /* ===== INÍCIO DA CORREÇÃO DE CENTRALIZAÇÃO ===== */
-            /* Este método força o painel a ficar no centro exato da tela */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* ===== FIM DA CORREÇÃO DE CENTRALIZAÇÃO ===== */
-
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
             background-repeat: no-repeat;
             background-position: center;
@@ -86,7 +79,7 @@
     <div class="clima-container">
         <img id="icone-tempo" src="https://openweathermap.org/img/wn/01d@2x.png" alt="Condição do Tempo" width="100">
         <div>
-            <div class="temperatura">27°C</div>
+            <div class="temperatura">28°C</div>
             <div class="condicao">céu limpo</div>
         </div>
     </div>

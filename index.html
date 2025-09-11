@@ -7,58 +7,64 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
-        /* ===== INÍCIO DA CORREÇÃO DE POSICIONAMENTO ===== */
-        /* Este reset garante que não haja margens ou espaços inesperados */
         html, body {
             margin: 0;
             padding: 0;
         }
-        /* ===== FIM DA CORREÇÃO DE POSICIONAMENTO ===== */
 
         body {
             width: 576px;
             height: 384px;
             overflow: hidden;
-            
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fotoaereapariquera.jpg');
             background-repeat: no-repeat;
             background-position: top left;
             background-size: 576px 384px;
-
-            padding: 20px;
-            box-sizing: border-box;
             color: #fff;
             font-family: 'Roboto', sans-serif;
+            position: relative; /* Base para o posicionamento absoluto */
+            
+            /* Centraliza o conteúdo que NÃO for absoluto (o relógio) */
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
+        /* POSICIONA O LOGO NO CANTO SUPERIOR ESQUERDO */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Aumenta o tamanho do logo */
         .logo-container img {
-            max-height: 70px;
+            max-height: 140px; 
             filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.9));
         }
         
+        /* POSICIONA O CLIMA NO CANTO SUPERIOR DIREITO (REGRA UNIFICADA E CORRETA) */
         .clima-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
             gap: 20px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
+
         .temperatura {
             font-size: 80px;
             font-weight: 700;
         }
-        .condicao {
-            font-size: 24px;
-            text-transform: capitalize;
-        }
+
+        /* O RELÓGIO E A DATA FICAM NO FLUXO NORMAL E SÃO CENTRALIZADOS PELO BODY */
         .relogio-container {
             text-align: center;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
+        
         #relogio {
             font-size: 120px;
             font-weight: 700;
@@ -74,11 +80,12 @@
 
     <div class="logo-container">
         <img src="marcadagua.jpg" alt="Logo">
-        
- </div>
+    </div>
+
     <div class="clima-container">
-    <div class="temperatura">29°C</div>    
-</div>
+        <div class="temperatura">29°C</div>
+    </div>
+
     <div class="relogio-container">
         <div id="relogio">--:--:--</div>
         <div id="data">------, -- de ------ de ----</div>
@@ -104,4 +111,5 @@
         atualizarRelogio();
     </script>
 </body>
+</html>
 </html>
